@@ -2,13 +2,23 @@
   <q-layout view="lHh LpR fFf" class="dtop">
     <q-header  class="bg-white" bordered>
       <q-toolbar :class="'q-py-xs'">
+        <q-btn
+          flat
+          dense
+          round
+          @click="leftDrawerOpen = !leftDrawerOpen"
+          aria-label="Menu"
+          icon="menu"
+          color="secondary"
+          class="lt-md"
+        />
         <q-btn dense round no-caps flat icon="ion-notifications" color="info" >
           <q-badge color="red"  transparent class="q-mb-lg q-py-xs q-px-none" :style="iconStyleBg" >99+</q-badge>
         </q-btn>
-        <div class="text-caption text-info">Updated 29 mins ago</div>
+        <div class="text-caption text-info gt-sm">Updated 29 mins ago</div>
 
 
-        <q-space class="gt-sm" />
+        <q-space class="" />
 
         <q-btn
           flat
@@ -21,8 +31,12 @@
           class="lt-md"
         />
         <!-- help-circle-outline -->
-         <q-btn to="/shop" no-caps flat color="secondary" icon="ion-contact" label="Hi, Moshood" />
-         <q-btn to="/shop" no-caps flat color="secondary" icon="ion-help-circle-outline" label="Help" />
+         <q-btn to="/" no-caps flat color="secondary" icon="ion-contact" >
+          <div class="">Hi, Moshood</div>
+         </q-btn>
+         <q-btn to="/" no-caps flat color="secondary" icon="ion-help-circle-outline" >
+          <div class="gt-sm">Help</div>
+         </q-btn>
 
       </q-toolbar>
     </q-header>
@@ -89,13 +103,18 @@ export default {
           link: 'home',
         },
         {
-          title: 'Security',
-          icon: 'security',
+          title: 'Audience',
+          icon: 'ion-person',
           link: 'security',
         },
         {
-          title: 'Help',
-          icon: 'ion-help-circle',
+          title: 'Games',
+          icon: 'fas fa-dice',
+          link: 'faq',
+        },
+        {
+          title: 'Redemption',
+          icon: 'confirmation_number',
           link: 'faq',
         }
       ]

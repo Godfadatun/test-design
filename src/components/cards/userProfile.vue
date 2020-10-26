@@ -1,10 +1,10 @@
 <template>
   <div class="">
-    <!-- <dashboardTop/> -->
-
     <q-card class="bg-transparent full-width" flat>
       <q-card-section class="text-blue text-bold row">
-        <q-avatar rounded size="100px" color="red" text-color="white" icon="directions" class="q-mr-lg" />
+        <q-avatar rounded size="100px" class="q-mr-lg" >
+          <img :src="content.src" alt="">
+        </q-avatar>
         <div class="col">
           <q-toolbar class="bg-transparent full-width">
             <q-space />
@@ -12,7 +12,7 @@
             <personalBtn />
 
           </q-toolbar>
-          <div class="text-h4 text-secondary" :style="{textDecoration: 'underline'}">{{content.name}}</div>
+          <div :class="$q.screen.gt.sm?'text-h5 text-secondary':'text-h5 text-secondary'" :style="{textDecoration: 'underline'}">{{content.name}}</div>
         </div>
       </q-card-section>
       <q-card-section>
@@ -24,21 +24,8 @@
             <q-item-label>{{item.content}}</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable v-if="!userInvitee">
-          <q-item-section top avatar>
-            <q-avatar text-color="secondary" icon="ion-lock" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label class="text-secondary text-italic" :style="{textDecoration: 'underline'}">Change Password</q-item-label>
-          </q-item-section>
-        </q-item>
+        <password />
       </q-card-section>
-      <q-card class="full-width">
-      <q-card-section>
-      test card
-      </q-card-section>
-      </q-card>
-
     </q-card>
   </div>
 </template>
@@ -47,22 +34,22 @@
 </style>
 
 <script>
-// import dashboardTop from '../common/dashboardTop'
-// import userTab from '../common/userTab'
 import personalBtn from '../common/personalBtn'
+import password from './passwordCard'
 export default {
   name: 'userProfile',
   props:['content'],
   components:{
-    // userTab,
-    // dashboardTop,
-    // inviteUser,
-    personalBtn
+    personalBtn,
+    password
   },
   data() {
     return {
       userInvitee:false
     }
+  },
+  computed: {
+    dprofile(){return this.$store.getters['Auth/profile']}
   },
 
 }

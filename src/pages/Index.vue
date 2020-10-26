@@ -5,14 +5,14 @@
     <!-- <Home v-if="theroute == 'coming_soon'"/> -->
     <!-- <dashboardTop /> -->
     <div class="full-width row">
-      <div class="q-pa-xs col-md-5 col-sm-12 col-xs-12">
+      <div class="q-pa-xs col-md-4 col-sm-12 col-xs-12">
         <left :content="profile"/>
       </div>
-      <div class="q-pa-xs col-md-7 col-sm-12 col-xs-12">
-        <right class="full-width" />
+      <div class="q-pa-xs col-md-8 col-sm-12 col-xs-12">
+        <right class="full-width" :content="subUsers" />
       </div>
     </div>
-    hello
+
 </q-page>
 
 </template>
@@ -38,18 +38,20 @@ export default {
   data() {
     return {
       profile:{
-        src:'',
-        name:'Moshood Aremu',
+        src:this.$store.getters['Auth/profile'].image_url,
+        name:this.$store.getters['Auth/profile'].first_name+" "+this.$store.getters['Auth/profile'].last_name,
         items:[
-          {icon:'mail', content:'Moshood@brandmobileafrica.com'},
-          {icon:'call', content:'+234 818 655 1442'},
-          {icon:'room', content:'#25B, Adewole Kolawole Crescent, off Admiralty way, Lekki, Phase 1, Lagos, Nigeria.'},
+          {icon:'mail', content: this.$store.getters['Auth/profile'].email},
+          {icon:'call', content: this.$store.getters['Auth/profile'].phone},
+          {icon:'room', content: this.$store.getters['Auth/profile'].address},
         ]
       }
     }
   },
   computed: {
     theroute(){return this.$route.name },
+    dprofile(){return this.$store.getters['Auth/profile']},
+    subUsers(){return this.$store.getters['Auth/profile'].sub_users}
   },
 }
 </script>

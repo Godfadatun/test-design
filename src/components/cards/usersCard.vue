@@ -4,11 +4,11 @@
     <q-toolbar class="bg-transparent">
       <q-space />
       <q-btn v-if="userInvitee" flat dense round icon="ion-ios-close-circle" color="red" @click="userInvitee = !userInvitee" />
-      <div v-else>
-        <q-btn color="blue-9" no-caps icon-right="ion-ios-mail" class="q-mr-md"  >
+      <div v-else class="row ">
+        <q-btn size="sm" color="blue-9 col" no-caps icon-right="ion-ios-mail" class="q-mr-md"  >
           <div class="text-caption q-pr-lg">Resend Invitations</div>
         </q-btn>
-        <q-btn color="blue-9" no-caps icon-right="ion-add-circle" @click="userInvitee = !userInvitee" >
+        <q-btn size="sm" color="blue-9" no-caps icon-right="ion-add-circle" @click="userInvitee = !userInvitee" >
           <div class="text-caption q-pr-lg">Invite User</div>
         </q-btn>
       </div>
@@ -18,10 +18,8 @@
         Users
       </q-card-section>
       <q-card-section>
-        <div>
-          <inviteUser v-if="userInvitee" />
-          <userTab />
-        </div>
+        <inviteUser v-if="userInvitee"  :role="role" />
+          <userTab class="full-width" v-for="(item, index) in content" :key="index" :content="item" />
       </q-card-section>
     </q-card>
   </div>
@@ -36,6 +34,7 @@ import userTab from '../common/userTab'
 import inviteUser from '../common/inviteUser'
 export default {
   name: 'userCard',
+  props:['content'],
   components:{
     userTab,
     // dashboardTop,
@@ -46,6 +45,8 @@ export default {
       userInvitee:false
     }
   },
-
+  computed:{
+    role(){return this.$store.getters['Auth/role']}
+  }
 }
 </script>

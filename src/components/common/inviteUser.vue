@@ -4,14 +4,14 @@
       <q-input dense color="blue-9" v-model="form.email" />
     </q-item-section>
     <q-item-section>
-      <q-input dense color="blue-9" v-model="options[0]" >
+      <q-input dense color="blue-9" v-model="role[0].name" >
         <template v-slot:append>
            <q-btn flat round dense color="blue-9" icon="ion-arrow-dropdown" />
         </template>
         <q-menu fit>
           <q-list style="min-width: 100px">
-            <q-item v-for="(item, index) in options" :key="index" clickable v-close-popup>
-            <q-item-section>{{item}}</q-item-section>
+            <q-item v-for="(item, index) in role" :key="index" clickable v-close-popup>
+            <q-item-section>{{item.name}}</q-item-section>
             </q-item>
           <q-separator />
 
@@ -32,10 +32,8 @@
 // import deleteBtn from './deleteBtn'
 export default {
   // name: 'EssentialLink',
-  props: ['title', 'caption', 'link', 'icon', 'ifCond',],
-  components:{
-    // deleteBtn
-  },
+  props: ['role'],
+
   data() {
     return {
       form:{
