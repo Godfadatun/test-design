@@ -1,0 +1,51 @@
+<template>
+  <div class="">
+    <!-- <dashboardTop/> -->
+    <q-toolbar class="bg-transparent">
+      <q-space />
+      <q-btn v-if="userInvitee" flat dense round icon="ion-ios-close-circle" color="red" @click="userInvitee = !userInvitee" />
+      <div v-else>
+        <q-btn color="blue-9" no-caps icon-right="ion-ios-mail" class="q-mr-md"  >
+          <div class="text-caption q-pr-lg">Resend Invitations</div>
+        </q-btn>
+        <q-btn color="blue-9" no-caps icon-right="ion-add-circle" @click="userInvitee = !userInvitee" >
+          <div class="text-caption q-pr-lg">Invite User</div>
+        </q-btn>
+      </div>
+    </q-toolbar>
+    <q-card class="my-card">
+      <q-card-section class="text-blue text-bold">
+        Users
+      </q-card-section>
+      <q-card-section>
+        <div>
+          <inviteUser v-if="userInvitee" />
+          <userTab />
+        </div>
+      </q-card-section>
+    </q-card>
+  </div>
+</template>
+
+<style>
+</style>
+
+<script>
+// import dashboardTop from '../common/dashboardTop'
+import userTab from '../common/userTab'
+import inviteUser from '../common/inviteUser'
+export default {
+  name: 'userCard',
+  components:{
+    userTab,
+    // dashboardTop,
+    inviteUser
+  },
+  data() {
+    return {
+      userInvitee:false
+    }
+  },
+
+}
+</script>
