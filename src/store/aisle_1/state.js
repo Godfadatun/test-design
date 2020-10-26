@@ -1,10 +1,8 @@
 import sampleData from '../../../sampleData.json'
-// let newData = JSON.parse(sampleData)
-// let dData = Object.keys()
-console.log(sampleData.profile);
+localStorage.setItem('sampleData', JSON.stringify(sampleData))
 
 export default {
   // all:dData,
-  profile: sampleData.profile.data.data,
-  role: sampleData.role.data[0]
+  profile: sampleData.profile.data.data || JSON.parse(localStorage.getItem('sampleData')).profile.data.data,
+  role: sampleData.role.data[0] || JSON.parse(localStorage.getItem('sampleData')).role.data[0]
 }
