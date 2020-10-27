@@ -5,7 +5,7 @@
       <q-card flat bordered :style="itemStyle">
         <div class="row">
           <q-space />
-          <q-icon name="ion-ios-close" color="red" size="lg" />
+          <q-icon name="ion-ios-close" color="red" size="lg" class="cursor-pointer" @click="alert = !alert" />
         </div>
         <q-card-section class="text-center q-py-sm">
           <q-icon name="ion-ios-alert" color="red" size="xl" />
@@ -30,12 +30,8 @@
 </style>
 
 <script>
-// import userTab from '../common/userTab'
 export default {
   name: 'userCard',
-  components:{
-    // userTab
-  },
   data() {
     return {
       alert:false,

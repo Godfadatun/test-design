@@ -3,7 +3,7 @@
     <q-card class="">
       <div class="row">
         <q-space />
-        <q-icon name="ion-ios-close" color="red" size="lg" />
+        <q-icon name="ion-ios-close" color="red" size="lg" class="cursor-pointer" />
       </div>
       <q-card-section class="text-blue text-bold row">
         <div class="col">

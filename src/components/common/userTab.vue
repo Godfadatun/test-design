@@ -1,54 +1,53 @@
 <template>
-  <q-item :class="'q-py-none row full-width'+(content.is_active ? 'text-grey' : '')" :style="itemStyle" >
-    <q-item-section avatar class="col-md-1">
-      <q-avatar rounded size="50px" class="q-mr-lg" >
+  <q-card flat square :class="'q-py-none row full-width flex-center'+(content.is_active ? 'text-grey' : '')" :style="itemStyle" >
+    <q-card-section class="col-md-1 col-xs-12 flex flex-center q-py-xs">
+      <q-avatar rounded size="50px" class="" >
           <img v-if="content.image_url" :src="content.image_url" alt="">
           <q-icon v-else color="info" name="ion-contact" size="lg"  />
         </q-avatar>
 
-    </q-item-section>
-    <q-item-section class="col-md-3">
-      <!-- <q-input dense v-model="form.name" /> -->
-      <q-item-label >{{content.first_name}}</q-item-label>
-    </q-item-section>
-    <q-item-section class="col-md-3 wrap" >
+    </q-card-section>
+    <q-card-section class="col-md-3 col-xs-12 flex flex-center q-pa-none">
+      <div class="q-pa-xs text-caption">{{content.first_name}}</div>
+    </q-card-section>
+    <q-card-section class="col-md-4 col-xs-12 flex flex-center q-py-none q-pl-none" >
 
-      <q-item-label class="text-caption wrap">{{content.email}}</q-item-label>
-    </q-item-section>
-    <q-item-section class="col-md-3 wrap" >
-      <div class="row flex-center q-pl-md flex self-end" >
+      <div class="text-caption q-pl-md text-left">{{content.email}}</div>
+    </q-card-section>
+    <q-card-section class="col-md-2 col-xs-12 flex flex-center q-pa-none" >
+      <div class="row flex-center text-caption" >
         <div >{{content.role.name}}</div>
-        <!-- <q-space /> -->
         <q-btn flat round dense  color="blue-9" icon="ion-arrow-dropdown" />
         <q-menu fit>
           <q-list style="min-width: 100px">
-            <q-item v-for="(item, index) in options" :key="index" clickable @click="status = item" v-close-popup>
-            <q-item-section>{{item}}</q-item-section>
-            </q-item>
+
+            <q-card v-for="(item, index) in role[0]" :key="index" clickable @click="status = item" v-close-popup>
+            <q-card-section>{{item.name}}</q-card-section>
+            </q-card>
           <q-separator />
 
           </q-list>
         </q-menu>
 
       </div>
-    </q-item-section>
-    <q-item-section side   :style="{minWidth:'110px'}">
-      <div v-if="content.has_activated" class="row">
-        <q-btn size="sm" class="col" flat v-if="!content.is_active" round text-color="negative" icon="block" @click="content.is_active = !content.is_active" />
-        <q-btn size="sm" class="col" flat v-if="content.is_active" round text-color="green" icon="ion-ios-unlock" @click="content.is_active = !content.is_active" />
+    </q-card-section>
+    <q-card-section  class="col-md-2 col-xs-12 flex flex-center q-pa-none">
+      <div v-if="content.has_activated" class="row flex-center">
+        <q-btn size="sm" class="" flat v-if="!content.is_active" round text-color="negative" icon="block" @click="content.is_active = !content.is_active" />
+        <q-btn size="sm" class="" flat v-if="content.is_active" round text-color="green" icon="ion-ios-unlock" @click="content.is_active = !content.is_active" />
         <deleteBtn />
       </div>
-       <q-btn v-if="!content.has_activated" color="blue-9" no-caps size="sm" label="Resend Invite" />
+       <q-btn v-if="!content.has_activated" color="blue-9" no-caps size="sm" label="Resend Invite" class="flex justify-end" />
 
-    </q-item-section>
-  </q-item>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script>
 import deleteBtn from './deleteBtn'
 export default {
   // name: 'EssentialLink',
-  props: ['title', 'caption', 'link', 'icon', 'ifCond','content'],
+  props: ['title', 'caption', 'link', 'icon', 'role','content'],
   components:{
     deleteBtn
   },
@@ -83,6 +82,7 @@ export default {
 
   computed: {
     theroute(){return this.$route.name },
+    // role(){return this.$store.getters['Auth/role']}
   },
 }
 </script>

@@ -121,7 +121,8 @@ export default {
     }
   },
   mounted() {
-
+    this.$store.dispatch('Auth/role')
+    this.$store.dispatch('Auth/profile')
   },
 
   methods: {

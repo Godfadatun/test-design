@@ -5,7 +5,7 @@
       <q-card class="">
         <div class="row">
           <q-space />
-          <q-icon name="ion-ios-close" color="red" size="lg" />
+          <q-icon name="ion-ios-close" color="red" size="lg" class="cursor-pointer" @click="alert = !alert" />
         </div>
         <q-card-section class="text-blue text-bold row">
           <div class="col">
@@ -91,7 +91,7 @@
 
         </q-card-section>
         <q-card-actions vertical align="center">
-          <q-btn unelevated no-caps color="secondary" class="full-width" :style="{maxWidth:'50%'}" label="Update" />
+          <q-btn unelevated no-caps color="secondary" class="full-width" :style="{maxWidth:'50%'}" label="Update" @click="updatePersonal()" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -131,6 +131,11 @@ export default {
       options:[
         'lagos', 'FCT', 'rivers', 'Oyo'
       ]
+    }
+  },
+  methods: {
+    updatePersonal(){
+      
     }
   },
 
